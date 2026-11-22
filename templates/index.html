@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lab TCP Scanner</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="shell">
+    <div class="eyebrow">CYBERSECURITY LAB / SCANNING</div>
+    <h1>TCP Scan Dashboard</h1>
+    <p class="lede">A lightweight, AI-assisted interface for inspecting the approved lab host only.</p>
+    <section class="panel">
+      <div class="header-line"><span>LOCKED LAB TARGET</span><span class="tag">Lab targets only</span></div>
+      <div class="target" id="target">{{ target }}</div>
+      <p class="muted">TCP connect scan · 20 common ports · light service detection</p>
+      {% if warning %}<div class="notice" role="alert">{{ warning }}</div>{% endif %}
+      <button type="button" id="scan" {% if warning %}disabled{% endif %}>Run light TCP scan</button>
+      <p class="status" id="status" aria-live="polite">Ready to scan.</p>
+    </section>
+    <section class="panel">
+      <div class="header-line"><span>SCAN RESULTS</span><span class="tag" id="count">Not run</span></div>
+      <div class="tablewrap"><table><thead><tr><th>PORT</th><th>PROTOCOL</th><th>STATE</th><th>SERVICE</th><th>VERSION (IF DETECTED)</th></tr></thead>
+      <tbody id="results"><tr><td colspan="5" class="empty">Run a scan to display open ports and services.</td></tr></tbody></table></div>
+      <p class="muted" id="note">Designed for instructor-approved lab hosts, not public systems.</p>
+    </section>
+    <footer>No custom targets or arbitrary Nmap flags can be entered through this interface.</footer>
+  </main>
+<script src="/static/app.js"></script>
+</body>
+</html>
